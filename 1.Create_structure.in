@@ -1,0 +1,15 @@
+units metal
+dimension 3
+boundary p p p 
+atom_style atomic
+newton on
+
+variable my_lattice equal 3.147
+
+lattice bcc ${my_lattice} orient x 1 1 1 orient y -1 -1 2 orient z 1 -1 0 
+region whole block -0.0001 0.49999 -0.0001 10.49999 -0.0001 10.9999 units lattice
+create_box 1 whole
+
+create_atoms 1 region whole
+mass * 1
+write_data 1.initial_structure.lam
