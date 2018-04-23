@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Apr 18 09:52:59 2018
-
+Cut the square-4-dislocation sample to a Rhombus shape with only one dislocation dipole, (output lam file)
 @author: shengyin
 """
 import math
