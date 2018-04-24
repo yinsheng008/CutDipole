@@ -18,7 +18,7 @@ class Point:
         return self.x+self.y+self.z
 
 with open("Rhombus_with_Screw.lam","r") as infile:
-    with open("Rhombus_POSCARi_withScrew","w") as outfile:     
+    with open("Rhombus_POSCAR_withScrew","w") as outfile:     
 	temp=infile.readline()
 	temp=infile.readline()
         
@@ -68,7 +68,7 @@ with open("Rhombus_with_Screw.lam","r") as infile:
 	outfile.write(temp)
 	temp='0.0 '+str(ly)+' 0.0\n'
 	outfile.write(temp)
-	temp=str(0.0)+' '+str(ly/2.0)+' '+str(lz)+' \n'
+	temp=str(lx/2.0)+' '+str(ly/2.0)+' '+str(lz)+' \n'
 	outfile.write(temp)
 	temp=str(len(all_atoms))+'\n'     #num_type1 num_type2 ...
 	outfile.write(temp)
