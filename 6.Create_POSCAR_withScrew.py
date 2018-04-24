@@ -78,8 +78,8 @@ with open("Rhombus_with_Screw.lam","r") as infile:
 	for i in range(0,atom_num):
 	    print i
 	    p=all_atoms[i]
-	    xf=p.x/lx
 	    zf=p.z/lz
+	    xf=(p.x-zf*(lx/2.0))/lx
 	    yf=(p.y+ly/4.0-zf*(ly/2.0))/ly
 	    temp='%.6f '%xf+' %.6f '%yf+' %.6f '%zf+'\n'
     	    outfile.write(temp)	
