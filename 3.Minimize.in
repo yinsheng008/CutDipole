@@ -2,9 +2,6 @@
 #Sheng Yin, Aug 29,2012 Brown University
 
 shell mkdir minimized res
-
-
-
 #------------------------ INITIALIZATION ----------------------------
  units metal
  dimension 3
@@ -33,6 +30,39 @@ min_style cg
 minimize 1e-18 1e-18 100000 100000
 run 1
 write_data 3.square_minimized.data
+dump 2 all custom 1 ./minimized/Minimized_Final.xyz id  x y z 
+run 0
+
+clear
+
+#------------------------ INITIALIZATION ----------------------------
+ units metal
+ dimension 3
+ boundary	p	p	p
+ atom_style atomic
+ newton on
+ atom_modify sort 0 2.0
+#!********************************************************************* 
+read_data 2.square_with_dislocations_shifted.lam
+#!*********************************************************************
+mass 		1 95.94
+#------------------------- FORCE FIELDS--------------------------------
+pair_style meam/spline
+pair_coeff * * Park_MEAM_Mo_2012.spline Mo
+#------------------------- SETTINGS -----------------------------------
+timestep 0.5e-3
+neighbor 1.0 bin
+neigh_modify once no every 1 delay 0 check yes
+
+thermo 100
+thermo_style custom step temp etotal press pxx pyy pzz lx ly lz
+thermo_modify lost ignore flush yes norm yes
+#---------------Equilibriation--------------------------
+# EQUILIBRATION
+min_style cg
+minimize 1e-18 1e-18 100000 100000
+run 1
+write_data 3.square_minimized_shifted.data
 dump 2 all custom 1 ./minimized/Minimized_Final.xyz id  x y z 
 run 0
 
